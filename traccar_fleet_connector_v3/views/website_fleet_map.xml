@@ -1,0 +1,43 @@
+<odoo>
+    <template id="fleet_map_page" name="Mapa de Flota en Website">
+        <!-- Contenedor del mapa -->
+        <div id="map" style="height: 500px; width: 100%; border-radius: 12px;"></div>
+
+        <!-- Leaflet CSS y JS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <!-- JS seguro de Odoo -->
+        <t t-javascript="true">
+            // Array de vehículos generado dinámicamente desde Odoo
+            var vehiculos = [
+                <t t-foreach="request.env['fleet.vehicle'].sudo().search([])" t-as="v">
+                    <t t-if="v.x_location_latitude and v.x_location_longitude">
+                        {"name": "<t t-esc='v.name'/>", "lat": <t t-esc='v.x_location_latitude'/>, "lon": <t t-esc='v.x_location_longitude'/>},
+                    </t>
+                </t>
+            ];
+
+            // Inicializa el mapa
+            var map = L.map('map').setView([23.1136, -82.3666], 11);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&amp;copy; OpenStreetMap'
+            }).addTo(map);
+
+            // Crear marcadores
+            vehiculos.forEach(function(auto){
+                L.marker([auto.lat, auto.lon])
+                    .addTo(map)
+                    .bindPopup(auto.name);
+            });
+
+            // Centrar automáticamente según todos los vehículos
+            if (vehiculos.length > 0) {
+                var bounds = vehiculos.map(v => [v.lat, v.lon]);
+                map.fitBounds(bounds, {padding: [50, 50]});
+            }
+        </t>
+    </template>
+</odoo>

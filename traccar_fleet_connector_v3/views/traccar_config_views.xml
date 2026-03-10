@@ -1,0 +1,44 @@
+<odoo>
+    <!-- Acción para abrir la ventana de configuración -->
+    <record id="action_traccar_config" model="ir.actions.act_window">
+        <field name="name">Conector GPS Traccar</field>
+        <field name="res_model">traccar.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem id="menu_traccar_root" name="Conector GPS Traccar"
+              parent="fleet.menu_root" sequence="80"/>
+    <menuitem id="menu_traccar_config" name="Configuración Traccar"
+              parent="menu_traccar_root" action="action_traccar_config"/>
+
+    <!-- Vista tipo árbol -->
+    <record id="view_traccar_config_tree" model="ir.ui.view">
+        <field name="name">traccar.config.tree</field>
+        <field name="model">traccar.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones Traccar">
+                <field name="traccar_url"/>
+                <field name="traccar_token"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista tipo formulario -->
+    <record id="view_traccar_config_form" model="ir.ui.view">
+        <field name="name">traccar.config.form</field>
+        <field name="model">traccar.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración Traccar">
+                <sheet>
+                    <group>
+                        <field name="traccar_url"/>
+                        <field name="traccar_token"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

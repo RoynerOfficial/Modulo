@@ -1,0 +1,45 @@
+<odoo>
+    <record id="fleet_vehicle_form_traccar_fields" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.traccar.fields</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Traccar">
+                    <field name="x_location_latitude"/>
+                    <field name="x_location_longitude"/>
+                    <field name="x_ultimafecha"/>
+                    <field name="x_uniqueid"/>
+
+                    <!-- Button: View location on Google Maps -->
+                    <button name="action_open_google_maps"
+                            type="object"
+                            string="Ver ubicación"
+                            class="btn-primary"
+                            attrs="{'invisible': [('x_location_latitude', '=', False)]}"/>
+
+                    <!-- Button: Copy link to clipboard -->
+                    <button name="action_copy_link"
+                            type="object"
+                            string="Copiar link"
+                            class="btn-secondary"
+                            attrs="{'invisible': [('x_location_latitude', '=', False)]}"/>
+
+                    <!-- Button: Share via WhatsApp -->
+                    <button name="action_share_location_whatsapp"
+                            type="object"
+                            string="Compartir WhatsApp"
+                            class="btn-success"
+                            attrs="{'invisible': [('x_location_latitude', '=', False)]}"/>
+
+                    <!-- Button: Update position now (production) -->
+                    <button name="action_update_position_now"
+                            type="object"
+                            string="Actualizar ahora"
+                            class="btn-warning"
+                            attrs="{'invisible': [('x_uniqueid', '=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
