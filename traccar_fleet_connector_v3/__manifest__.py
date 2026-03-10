@@ -14,7 +14,6 @@ Main Features:
 - Share vehicle location via WhatsApp
 """,
     "author": "Royner Perez, Reynaldo Perez Cuantico SURL",
-    "website": "https://github.com/RoynerOfficial/OdooTraccar",
     "category": "Fleet",
     "license": "OPL-1",
     "price": 49.00,
@@ -43,3 +42,4 @@ Main Features:
     "application": False,
 
 }
+
