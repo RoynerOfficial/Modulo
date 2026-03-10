@@ -16,7 +16,7 @@ Main Features:
     "author": "Royner Perez, Reynaldo Perez Cuantico SURL",
     "website": "https://github.com/RoynerOfficial/OdooTraccar",
     "category": "Fleet",
-    "license": "AGPL-3",
+    "license": "OPL-1",
     "price": 49.00,
     "currency": "USD",
     "depends": ["fleet"],
@@ -41,4 +41,5 @@ Main Features:
 
     "installable": True,
     "application": False,
+
 }
